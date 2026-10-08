@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Se você pudesse ouvir meus pensamentos…</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,300;1,500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}
+:root{color-scheme:dark;--ink:#05060f;--lilac:#b9a3ff;--rose:#f4bccb;--paper:#f5f0ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{height:100%;overflow:hidden;background:var(--ink);color:var(--paper);font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;-webkit-tap-highlight-color:transparent}
+.bg{position:fixed;inset:0;opacity:0;transition:opacity 3.5s}.bg.on{opacity:1}
+.b0{background:radial-gradient(ellipse at 50% 40%,#0d1340,#05060f 70%)}
+.b1{background:radial-gradient(ellipse at 28% 28%,#2b1553,transparent 55%),radial-gradient(ellipse at 78% 78%,#4a0f26,transparent 55%),#05060f}
+.b2{background:radial-gradient(ellipse at 50% 112%,#7a1530,transparent 60%),radial-gradient(ellipse at 20% 0,#2b1553,transparent 55%),#070714}
+.b3{background:radial-gradient(ellipse at 50% 60%,#5b1030,#1a0a2e 48%,#05060f 88%)}
+.b4{background:radial-gradient(ellipse at 50% 50%,#0b0f26,#030308 75%)}
+.b5{background:linear-gradient(#04061a,#0e1240 45%,#3a1a63 75%,#7a1530)}
+.b6{background:#000}
+#ob{position:fixed;inset:-10%;transition:transform .8s ease-out;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.3;animation:dr 24s ease-in-out infinite alternate}
+@keyframes dr{to{transform:translate(9vw,-7vh) scale(1.25)}}
+.vg{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 42%,rgba(0,0,0,.7))}
+.gr{position:fixed;inset:0;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='.9' numOctaves='2'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>")}
+canvas{position:fixed;inset:0}
+#st{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8em;padding:0 8vw;text-align:center;pointer-events:none}
+.t{font-size:clamp(24px,5.6vw,38px);line-height:1.25;max-width:min(88vw,560px);font-style:italic;font-weight:300;opacity:0;filter:blur(14px);transform:translateY(10px);transition:opacity 1.8s ease,filter 1.8s ease,transform 3s ease;text-shadow:0 0 22px rgba(185,163,255,.55),0 0 2px rgba(255,255,255,.3)}
+.t.in{opacity:1;filter:blur(0);transform:none}
+.t.out{opacity:0;filter:blur(12px);transition-duration:1.2s}
+.big{font-size:clamp(40px,11vw,76px);font-style:normal;line-height:1.05}
+.sm{font-size:clamp(18px,4vw,24px)}.sm.in{opacity:.6}
+.ro{color:var(--rose);text-shadow:0 0 28px rgba(244,100,140,.65)}
+.sc{position:fixed;text-align:center;transform:translate(-50%,-50%);pointer-events:none}
+.sc .t{max-width:none}
+#dot{position:fixed;left:50%;top:50%;width:9px;height:9px;margin:-4px;border-radius:50%;background:#fff;box-shadow:0 0 30px 10px rgba(185,163,255,.6);display:none;animation:pl 4s ease-in-out infinite}
+@keyframes pl{50%{transform:scale(1.7);opacity:.6}}
+.btn{position:fixed;left:50%;bottom:calc(13vh + env(safe-area-inset-bottom,0px));transform:translateX(-50%);opacity:0;pointer-events:none;transition:opacity 2.5s;font:inherit;font-size:22px;letter-spacing:.04em;color:var(--paper);background:rgba(20,10,40,.4);border:1px solid rgba(185,163,255,.5);border-radius:999px;padding:14px 30px;box-shadow:0 0 30px rgba(185,163,255,.25);cursor:pointer;white-space:nowrap}
+.btn.on{opacity:1;pointer-events:auto}
+#snd{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:12px;z-index:5;font:inherit;font-size:15px;color:var(--paper);opacity:.6;background:none;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){.orb,#dot{animation:none}}
+</style></head><body>
+<div class="bg b0 on"></div><div class="bg b1"></div><div class="bg b2"></div><div class="bg b3"></div><div class="bg b4"></div><div class="bg b5"></div><div class="bg b6"></div>
+<div id="ob"><div class="orb" style="width:50vmax;height:50vmax;left:-10%;top:5%;background:#3b1a7a"></div><div class="orb" style="width:45vmax;height:45vmax;right:-8%;bottom:0;background:#6b1230;animation-delay:-9s"></div><div class="orb" style="width:30vmax;height:30vmax;left:40%;top:-10%;background:#1b2a8a;animation-delay:-15s"></div></div>
+<canvas id="cv"></canvas><div class="vg"></div><div class="gr"></div><div id="dot"></div>
+<div id="st"></div>
+<button class="btn" id="go">Entrar na minha mente</button>
+<button class="btn" id="again">ouvir de novo</button>
+<button id="snd" aria-label="Som ambiente">som desligado</button>
+<script>
+const $=s=>document.querySelector(s),sleep=ms=>new Promise(r=>setTimeout(r,ms)),stack=$('#st'),dot=$('#dot');
+const cv=$('#cv'),x=cv.getContext('2d'),D=Math.min(devicePixelRatio||1,2);let W,H;
+function rs(){W=innerWidth;H=innerHeight;cv.width=W*D;cv.height=H*D;x.setTransform(D,0,0,D,0,0)}addEventListener('resize',rs);rs();
+const N=W<600?600:900,cols=['244,188,203','185,163,255','255,255,255'];
+const P=[...Array(N)].map(()=>{const k=Math.random();return{x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.4,o:0,ph:Math.random()*6.28,s:'rgb('+cols[k<.15?0:k<.5?1:2]+')',tx:null,ty:null}});
+let dens=0,tD=0,sky=false,rain=false,B=[],star=null,vol=.3,on=false,ac,mg;
+function burst(px,py){for(let i=0;i<16;i++){const a=Math.random()*6.283,s=.4+Math.random()*1.4;B.push({x:px,y:py,vx:Math.cos(a)*s,vy:Math.sin(a)*s-.3,l:1})}B=B.slice(-300)}
+function loop(t){x.clearRect(0,0,W,H);dens+=(tD-dens)*.02;
+P.forEach((p,i)=>{p.o+=((i/N<dens?1:0)-p.o)*.04;if(p.o<.01)return;const f=p.tx!=null;
+if(f){p.x+=(p.tx-p.x)*.07;p.y+=(p.ty-p.y)*.07}else{p.x+=Math.sin(t/4000+p.ph)*.18;p.y+=rain?.45+p.r*.2:-(.06+p.r*.05);if(p.y<-5)p.y=H+5;if(p.y>H+5)p.y=-5;if(p.x<-5)p.x=W+5;if(p.x>W+5)p.x=-5}
+const tw=.5+.5*Math.sin(t/(sky?500:1100)+p.ph);x.globalAlpha=p.o*(f?.95:.2+.65*tw);x.fillStyle=p.s;x.beginPath();x.arc(p.x,p.y,f?1.4:p.r,0,6.283);x.fill()});
+B=B.filter(b=>b.l>0);B.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.vx*=.97;b.vy*=.97;b.l-=.012;x.globalAlpha=b.l*.8;x.fillStyle='rgb(244,188,203)';x.fillRect(b.x,b.y,1.6,1.6)});
+if(sky&&!star&&Math.random()<.003)star={x:Math.random()*W*.7,y:Math.random()*H*.35,l:0};
+if(star){star.l+=.02;const px=star.x+star.l*W*.35,py=star.y+star.l*H*.18,g=x.createLinearGradient(px-90,py-45,px,py);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(1,'rgba(255,255,255,.9)');x.globalAlpha=Math.sin(Math.min(star.l,1)*3.14);x.strokeStyle=g;x.lineWidth=1.5;x.beginPath();x.moveTo(px-90,py-45);x.lineTo(px,py);x.stroke();if(star.l>1)star=null}
+requestAnimationFrame(loop)}requestAnimationFrame(loop);
+addEventListener('pointermove',e=>{$('#ob').style.transform=`translate(${(e.clientX/W-.5)*-34}px,${(e.clientY/H-.5)*-34}px)`});
+async function form(txt){await document.fonts.ready;const L=txt.split('\n'),o=document.createElement('canvas');o.width=W;o.height=H;const c=o.getContext('2d'),m=Math.max(...L.map(l=>l.length)),fs=Math.min(48,W*.9/(m*.46));
+c.font=`italic 500 ${fs}px "Cormorant Garamond",Georgia,serif`;c.textAlign='center';c.textBaseline='middle';L.forEach((l,i)=>c.fillText(l,W/2,H/2+(i-(L.length-1)/2)*fs*1.35));
+const d=c.getImageData(0,0,W,H).data;let g=2,pts;do{pts=[];for(let yy=0;yy<H;yy+=g)for(let xx=0;xx<W;xx+=g)if(d[(yy*W+xx)*4+3]>128)pts.push([xx,yy]);g++}while(pts.length>N);
+pts.sort(()=>Math.random()-.5);tD=1;P.forEach((p,i)=>{if(i<pts.length){p.tx=pts[i][0];p.ty=pts[i][1]}else p.tx=null})}
+function release(){P.forEach(p=>{p.tx=null;p.x+=(Math.random()-.5)*60;p.y+=(Math.random()-.5)*60})}
+function aud(){ac=new(window.AudioContext||webkitAudioContext)();mg=ac.createGain();mg.gain.value=0;const f=ac.createBiquadFilter();f.type='lowpass';f.frequency.value=420;f.connect(mg);mg.connect(ac.destination);
+[[55,'sine',.5],[82.41,'sine',.35],[110,'triangle',.18],[164.81,'sine',.12]].forEach(([fr,ty,g])=>{const o=ac.createOscillator(),n=ac.createGain();o.type=ty;o.frequency.value=fr;n.gain.value=g;o.connect(n);n.connect(f);o.start()})}
+function av(){if(mg)mg.gain.setTargetAtTime(on?vol*.35:0,ac.currentTime,2)}
+function ping(){if(!on||!ac)return;const o=ac.createOscillator(),g=ac.createGain(),n=ac.currentTime;o.frequency.value=[523,587,659,784,880][Math.random()*5|0];g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(.03*(vol+.3),n+.05);g.gain.exponentialRampToValueAtTime(.0001,n+1.8);o.connect(g);g.connect(ac.destination);o.start();o.stop(n+2)}
+$('#snd').onclick=e=>{on=!on;if(on&&!ac)aud();if(ac)ac.resume();e.target.textContent=on?'som ligado':'som desligado';av()};
+const bg=i=>document.querySelectorAll('.bg').forEach((e,j)=>e.classList.toggle('on',j==i));
+function pr(s){let c='';while('!_*'.includes(s[0])){c+=s[0]=='!'?' big':s[0]=='_'?' sm':' ro';s=s.slice(1)}return[s,c]}
+function show(raw,m){const[t,c]=pr(raw),el=document.createElement('div');el.className='t'+c;el.textContent=t;let ctr=null;
+if(m=='sc'){const f=c.includes('big')?Math.min(W*.1,52):c.includes('sm')?20:24+Math.random()*(W<600?10:20);if(!c)el.style.fontSize=f+'px';
+const w=Math.min(t.length*f*.45+30,W*.84);ctr=document.createElement('div');ctr.className='sc';ctr.style.width=w+'px';ctr.style.left=(w/2+8+Math.random()*(W-w-16))+'px';ctr.style.top=(70+Math.random()*(H-190))+'px';ctr.appendChild(el);document.body.appendChild(ctr)}
+else stack.appendChild(el);
+requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
+const r=(ctr||el).getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2);ping();return{el,ctr}}
+function hide(o,ms){setTimeout(()=>{o.el.classList.remove('in');o.el.classList.add('out');setTimeout(()=>(o.ctr||o.el).remove(),1500)},ms||0)}
+async function run(s){if(s.fn)return s.fn();bg(s.b);tD=s.d;sky=!!s.s;rain=!!s.r;vol=s.v??.3;av();dot.style.display=s.dot?'block':'none';let live=[];
+for(const it of s.l){if(typeof it=='number'){await sleep(it);continue}
+if(it=='/'){live.forEach(o=>hide(o));live=[];await sleep(1700);continue}
+const o=show(it,s.m);live.push(o);const w=1500+it.length*58+(s.w||0);
+if(s.m=='one'){await sleep(w);hide(o);live=[];await sleep(1600)}else if(s.m=='st')await sleep(w);else{hide(o,s.k||2800);await sleep(s.g||1300)}}
+if(!s.keep){live.forEach(o=>hide(o));await sleep(1800)}}
+const S=[
+{b:1,d:1,v:.5,m:'sc',g:420,k:900,l:['amor…','sorriso…','saudade…','ela…','linda…','meu Deus…']},
+{b:1,d:.9,m:'one',l:['Calma.','Eles passam rápido por aqui.','Vamos começar.']},
+{b:1,d:.8,m:'sc',g:1400,k:2800,l:['Ela é tão linda.','Meu Deus, olha esse sorriso.','Como pode uma pessoa ser tão bonita?','_Eu queria abraçar ela agora.','Ela provavelmente nem sabe o quanto é linda.','!Minha princesa. ❤️','Será que eu já falei que ela está linda hoje?',1800,'Provavelmente não o suficiente.']},
+{b:2,d:.35,v:.35,m:'one',l:['Tem uma coisa que acontece quando eu olho para você…','Às vezes eu simplesmente esqueço o que estava pensando.']},
+{b:2,d:.35,m:'st',l:['Eu olho para o seu sorriso…','para o seu jeito…','para o seu olhar…','e meu cérebro simplesmente decide pensar em você.','/','!Você é linda.','Muito.','E eu provavelmente ficaria alguns segundos olhando sem você perceber, minha linda.','/','Ou talvez percebesse.','Nesse caso…','eu fingiria que não estava olhando.','_kkkk']},
+{b:3,d:.4,m:'one',l:['Agora vêm alguns pensamentos que eu nem sempre falo.']},
+{b:3,d:.4,m:'st',l:['Eu espero que você saiba o quanto é importante para mim.','Eu espero que você nunca duvide do carinho que eu tenho por você.','/','Eu quero ver você feliz.','Quero estar perto quando você estiver feliz.','E também quando não estiver.','/','Quero ouvir você.','Quero cuidar de você, meu bem.','Quero conhecer cada vez mais quem você é.']},
+{b:3,d:.3,m:'one',w:700,l:['Eu queria estar perto dela agora.','Daria um abraço nela.','Um abraço demorado.','Daqueles que fazem o resto do mundo ficar quieto por alguns segundos.','*E provavelmente daria um beijo também. ❤️']},
+{b:3,d:.9,m:'sc',g:800,k:1100,l:['Beijaria ela.','Agora.','Mais um.','Só mais um.','Tá, parei.',1500,'*!Mentira. 😂']},
+{b:3,d:.5,m:'one',l:['Acho que você já percebeu…','Eu gosto muito de ficar perto de você, meu amor.']},
+{b:4,d:.08,r:1,v:.15,m:'one',w:500,l:['Mas minha cabeça não pensa em você só quando você está perto.','Às vezes você aparece justamente quando eu queria que estivesse aqui.','Queria conversar com ela.','Queria ver ela.','Queria ouvir a voz dela.','Queria abraçar ela.']},
+{b:4,d:.04,r:1,v:.1,m:'one',w:2500,l:['!saudade']},
+{b:5,d:.75,s:1,v:.4,m:'st',l:['Como será o nosso futuro?','Quantas coisas ainda vamos viver?','Quantos lugares ainda podemos conhecer?','Quantas noites ainda vamos passar conversando?','/','Quantas vezes ainda vou poder olhar para ela e pensar…','Meu Deus…','!Eu realmente amo essa garota.','/','Eu não sei o que o futuro guarda.','Mas espero encontrar você em muitos capítulos dele.']},
+{fn:async()=>{bg(1);tD=1;sky=false;vol:.5;const w=['linda','meu amor','saudade','sorriso','minha princesa','abraço','beijo','quero você perto','eu te amo','minha vida','fica comigo','você é especial','meu bem','ela…'],live=[];
+for(let i=0;i<48;i++){const o=show(w[Math.random()*w.length|0],'sc');live.push(o);hide(o,1500);await sleep(Math.max(60,520-i*11))}
+await sleep(1200);live.forEach(o=>hide(o));bg(6);tD=0;vol=0;av();await sleep(4000)}},
+{b:6,d:0,v:0,m:'one',w:300,l:['Pronto.','Agora você sabe um pouquinho do que acontece aqui dentro.','Mas…','tem uma coisa que nenhum desses pensamentos consegue explicar direito.']},
+{b:0,d:.3,v:.35,m:'st',l:['Eu admiro você.','Eu gosto do seu jeito.','Gosto de conversar com você.','Gosto de ouvir você.','/','Gosto do seu sorriso.','Gosto da sua presença.','Gosto de ter você na minha vida.','E gosto ainda mais da ideia de continuar tendo.','/','Porque você não ocupa só meus pensamentos.','!Você ocupa um lugar no meu coração.']},
+{b:4,d:.12,v:.15,dot:1,m:'one',w:400,l:['Se você pudesse ouvir absolutamente tudo que passa pela minha cabeça…','talvez descobrisse que eu penso em você muito mais do que você imagina.','E talvez descobrisse…','que por trás de todos esses pensamentos…','existe um sentimento muito maior.']},
+{b:6,d:.04,v:.3,m:'st',l:['!Amor.',1200,'/','De todos os pensamentos que passam pela minha cabeça…','existe um que sempre volta.',1400,'/','*!EU TE AMO.',2600,'/','Eu te amo quando penso em você.','Eu te amo quando sinto sua falta.','Eu te amo quando estou perto.','Eu te amo quando quero te abraçar.','/','Eu te amo quando penso no futuro.','Eu te amo nos momentos simples.','E provavelmente vou continuar encontrando novos motivos para te amar, minha vida.']},
+{fn:async()=>{bg(6);dot.style.display='none';vol=.35;av();
+for(const t of ['Você ouviu\nmeus pensamentos.','Mas ainda não\nouviu o principal.','Você é um dos pensamentos\nmais bonitos que a vida\ncolocou na minha cabeça.']){await form(t);await sleep(5500);release();tD=.25;await sleep(2200)}
+await run({b:6,d:.1,m:'one',w:300,l:['E se algum dia você esquecer o quanto é amada…','volta aqui.','Eu te lembro.']});
+show('*!Eu te amo, meu amor. ❤️','st');await sleep(6000);$('#again').classList.add('on')}}
+];
+(async()=>{
+await run({b:0,d:.15,v:.25,m:'st',keep:1,w:200,l:['Você já teve vontade de saber o que uma pessoa realmente pensa quando olha para você?',1200,'/','Então hoje eu vou deixar você descobrir.',1000,'/','Por alguns minutos…','você vai poder ouvir meus pensamentos.']});
+$('#go').classList.add('on');await new Promise(r=>$('#go').onclick=r);$('#go').classList.remove('on');
+stack.querySelectorAll('.t').forEach(e=>{e.classList.remove('in');e.classList.add('out')});bg(1);tD=1;await sleep(2200);stack.innerHTML='';
+for(const s of S)await run(s)})();
+$('#again').onclick=()=>location.reload();
+</script></body></html>
